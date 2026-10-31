@@ -12,13 +12,13 @@ const getToken = () => (process.env.PAGOU_API_KEY || process.env.PAGOU_TOKEN || 
 // ⚠️ Preços ficam no SERVIDOR: o cliente só envia o id da oferta.
 // Mantenha em sincronia com src/config.ts
 const OFFERS: Record<string, { title: string; priceCents: number }> = {
-  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 800 },
-  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 1500 },
+  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 5990 },
+  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 10790 },
 };
 
 // Mantenha em sincronia com src/config.ts
 const SHIPPING: Record<string, { name: string; priceCents: number }> = {
-  pac: { name: "Frete PAC", priceCents: 0 },
+  pac: { name: "Frete PAC", priceCents: 998 },
   sedex: { name: "Frete SEDEX", priceCents: 1850 },
 };
 
