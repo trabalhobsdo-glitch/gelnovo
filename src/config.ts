@@ -12,8 +12,8 @@ export const STORE = {
 export type OfferId = "unitario" | "kit-duplo";
 
 export const OFFERS: Record<OfferId, { id: OfferId; name: string; short: string; priceCents: number; qty: number }> = {
-  unitario: { id: "unitario", name: "Super M4 Blaster Elétrica de Gel", short: "1 unidade", priceCents: 800, qty: 1 },
-  "kit-duplo": { id: "kit-duplo", name: "Kit com 2 Super M4 Blaster", short: "Kit com 2", priceCents: 1500, qty: 2 },
+  unitario: { id: "unitario", name: "Super M4 Blaster Elétrica de Gel", short: "1 unidade", priceCents: 5990, qty: 1 },
+  "kit-duplo": { id: "kit-duplo", name: "Kit com 2 Super M4 Blaster", short: "Kit com 2", priceCents: 10790, qty: 2 },
 };
 
 export const savingsCents = OFFERS.unitario.priceCents * 2 - OFFERS["kit-duplo"].priceCents; // 200
@@ -23,7 +23,7 @@ export const kitUnitCents = OFFERS["kit-duplo"].priceCents / 2; // 4895
 export type ShippingId = "pac" | "sedex";
 
 export const SHIPPING: Record<ShippingId, { id: ShippingId; name: string; priceCents: number; days: string }> = {
-  pac: { id: "pac", name: "PAC", priceCents: 0, days: "6 a 8 dias" },
+  pac: { id: "pac", name: "PAC", priceCents: 998, days: "6 a 8 dias" },
   sedex: { id: "sedex", name: "SEDEX", priceCents: 1850, days: "3 a 5 dias" },
 };
 
