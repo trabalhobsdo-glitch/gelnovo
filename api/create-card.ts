@@ -16,11 +16,11 @@ const getPublishable = () => clean(process.env.PAGOU_PUBLISHABLE_KEY || process.
 
 // ⚠️ Mantenha em sincronia com api/create-pix.ts e src/config.ts
 const OFFERS: Record<string, { title: string; priceCents: number }> = {
-  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 800 },
-  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 1500 },
+  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 5990 },
+  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 10790 },
 };
 const SHIPPING: Record<string, { name: string; priceCents: number }> = {
-  pac: { name: "Frete PAC", priceCents: 0 },
+  pac: { name: "Frete PAC", priceCents: 998 },
   sedex: { name: "Frete SEDEX", priceCents: 1850 },
 };
 const BUMPS: Record<string, { title: string; priceCents: number }> = {
