@@ -12,13 +12,13 @@ const getToken = () => (process.env.PAGOU_API_KEY || process.env.PAGOU_TOKEN || 
 // ⚠️ Preços ficam no SERVIDOR: o cliente só envia o id da oferta.
 // Mantenha em sincronia com src/config.ts
 const OFFERS: Record<string, { title: string; priceCents: number }> = {
-  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 4990 },
-  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 9790 },
+  unitario: { title: "Super M4 Blaster Elétrica de Gel", priceCents: 800 },
+  "kit-duplo": { title: "Kit com 2 Super M4 Blaster Elétrica de Gel", priceCents: 1500 },
 };
 
 // Mantenha em sincronia com src/config.ts
 const SHIPPING: Record<string, { name: string; priceCents: number }> = {
-  pac: { name: "Frete PAC", priceCents: 990 },
+  pac: { name: "Frete PAC", priceCents: 0 },
   sedex: { name: "Frete SEDEX", priceCents: 1850 },
 };
 
@@ -75,7 +75,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const products = [
     { name: offer.title, price: offer.priceCents, quantity: 1, tangible: true, sku: offerId },
     ...bumpIds.map((b) => ({ name: BUMPS[b].title, price: BUMPS[b].priceCents, quantity: 1, tangible: true, sku: `bump-${b}` })),
-    { name: ship.name, price: ship.priceCents, quantity: 1, tangible: false, sku: `frete-${shipping}` },
+    ...(ship.priceCents > 0 ? [{ name: ship.name, price: ship.priceCents, quantity: 1, tangible: false, sku: `frete-${shipping}` }] : []),
   ];
   const amount = products.reduce((t, p) => t + p.price * p.quantity, 0);
 
