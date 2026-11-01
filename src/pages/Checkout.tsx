@@ -155,7 +155,7 @@ export default function Checkout() {
     if ((step !== "pix" && step !== "cardwait") || !waitId) return;
     const t = setInterval(async () => {
       try {
-        const r = await fetch(`/api/pix-status?id=${encodeURIComponent(waitId)}`);
+        const r = await fetch(`/api/pix-status?id=${encodeURIComponent(waitId)}${step === "pix" ? "&m=pix" : ""}`);
         const { status } = await r.json();
         if (status === "paid" || status === "captured" || (step === "pix" && status === "authorized")) {
           if (step === "cardwait") trackPurchase(paidAmount ?? totalCents);
