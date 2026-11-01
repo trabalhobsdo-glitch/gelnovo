@@ -87,6 +87,13 @@ export default function Checkout() {
       value: offer.priceCents / 100,
       currency: "BRL",
     });
+    // TikTok Pixel: início do checkout
+    (window as any).ttq?.track("InitiateCheckout", {
+      content_type: "product",
+      contents: [{ content_id: current, content_name: offer.name, quantity: 1, price: offer.priceCents / 100 }],
+      value: offer.priceCents / 100,
+      currency: "BRL",
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
@@ -196,7 +203,7 @@ export default function Checkout() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const trackPurchase = (cents: number) =>
+  const trackPurchase = (cents: number) => {
     (window as any).fbq?.("track", "Purchase", {
       content_name: offer.name,
       content_type: "product",
@@ -204,6 +211,14 @@ export default function Checkout() {
       value: cents / 100,
       currency: "BRL",
     });
+    // TikTok Pixel: venda (CompletePayment é o evento de compra do TikTok)
+    (window as any).ttq?.track("CompletePayment", {
+      content_type: "product",
+      contents: [{ content_id: current, content_name: offer.name, quantity: 1, price: cents / 100 }],
+      value: cents / 100,
+      currency: "BRL",
+    });
+  };
 
   const orderBody = () => ({
     offerId: current,
@@ -290,7 +305,7 @@ export default function Checkout() {
       setPaidWith("pix");
       setPaidAmount(data?.amount ?? totalCents);
       setStep("pix");
-      // Meta Pixel: venda marcada assim que o PIX é gerado
+      // Pixels (Meta e TikTok): venda marcada assim que o PIX é gerado
       trackPurchase(data?.amount ?? totalCents);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (e) {
