@@ -4,7 +4,7 @@
 export const STORE = {
   name: "Orbigel",
   legalName: "", // Razão social / CNPJ: preencha só com dados reais
-  whatsapp: "5512998473775", // Ex.: "5511999999999" — se vazio, o botão não aparece
+  whatsapp: "5511967797148", // Ex.: "5511999999999" — se vazio, o botão não aparece
   email: "orbigel@gmail.com", // E-mail de atendimento (opcional)
   minAge: "13+", // Confira com a embalagem/fornecedor antes de publicar
 };
